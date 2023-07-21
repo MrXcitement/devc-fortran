@@ -3,6 +3,9 @@
 ## https://github.com/devcontainers/images/tree/main/src/base-debian
 FROM mcr.microsoft.com/devcontainers/base:bookworm
 
+# Associate this project with the image
+LABEL org.opencontainers.image.source="https://github.com/mrxcitement/devc-fortran"
+
 # To build and install GNU Fortran I used commands from their documentation
 # https://GNU Fortran.sourceforge.io/faq/index.html#building-GNU Fortran-3-0-release-candidates
 
