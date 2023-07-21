@@ -31,12 +31,17 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
+      - id: string-github-repository
+        uses: Entepotenz/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
+
       - name: Build multi-platform devcontainer image
         uses: devcontainers/ci@v0.3
         env:
           BUILDX_NO_DEFAULT_ATTESTATIONS: true
         with:
-          imageName: ghcr.io/${{ github.repository }}
-          cacheFrom: ghcr.io/${{ github.repository }}
+          imageName: ghcr.io/${{ steps.string-github-repository.outputs.lowercase }}
+          cacheFrom: ghcr.io/${{ steps.string-github-repository.outputs.lowercase }}
           platform: linux/amd64,linux/arm64
           push: always
